@@ -16,14 +16,14 @@ lib.config.extension_RitySelf_enable
 game.import("extension", (lib, _game, _ui, _get, _ai, _status) => {
     let extInfo = {
 		intro: "rExtension Runtime from Rintim",
-		version: "0.0.0",
+		version: "0.1.0",
 		branch: "Development",
-		build: 0,
+		build: 1,
 		year: 2022,
 		month: "05",
 		date: 24,
-		nextPreview: 1,
-		times: "001",
+		nextPreview: 4,
+		times: "002",
 	};
 
     let extension = {
