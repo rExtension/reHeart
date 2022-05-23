@@ -17,12 +17,11 @@ game.import("extension", (lib, _game, _ui, _get, _ai, _status) => {
     let extInfo = {
 		intro: "rExtension Runtime from Rintim",
 		version: "0.1.0",
-		branch: "Development",
+		branch: "Master",
 		build: 1,
 		year: 2022,
 		month: "05",
 		date: 24,
-		nextPreview: 4,
 		times: "002",
 	};
 
