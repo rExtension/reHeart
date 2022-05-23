@@ -65,7 +65,7 @@ game.import("extension", (lib, _game, _ui, _get, _ai, _status) => {
                     "= = = = = = = = = = = = = = = = ="
                 ];
                 if (extInfo.branch !== "Development") {
-                    intro[2] = `<span style=\"color:#1688F2\">Version: ${["Release", "Preview"].includes(extInfo.branch) ? (extInfo.branch === "Preview" ? `${extInfo.version}pre` : `${extInfo}`) : `Build ${extInfo.build} ${extInfo.nextPreview !== undefined ? `Form ${extInfo.nextPreview}` : ""}`}</span>`;
+                    intro[2] = `<span style=\"color:#1688F2\">Version: ${["Release", "Preview"].includes(extInfo.branch) ? (extInfo.branch === "Preview" ? `${extInfo.version}pre` : `${extInfo}`) : `Build ${extInfo.build} ${extInfo.nextPreview !== undefined ? `Form ${extInfo.nextPreview}` : ""}`}</span></br>`;
                     intro[3] = `${intro[3]}</br>`;
                 }
                 lib.extensionMenu[`extension_${name}`].intro.name = intro.join("</br>");
