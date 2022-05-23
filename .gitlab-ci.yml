@@ -1,0 +1,12 @@
+
+include:
+  - template: Security/SAST.gitlab-ci.yml
+
+stages:
+  - test
+
+sast:
+  stage: test
+  artifacts:
+    paths: 
+      - gl-sast-report.json
