@@ -21,7 +21,7 @@ game.import("extension", (lib, _game, _ui, _get, _ai, _status) => {
 		build: 0,
 		year: 2022,
 		month: "05",
-		date: 22,
+		date: 24,
 		nextPreview: 1,
 		times: "001",
 	};

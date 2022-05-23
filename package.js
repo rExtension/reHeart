@@ -15,5 +15,5 @@ extension["reHeart"] = {
 	forum: "",
 	version: "0.1.0",
 	files: ["extension.js"],
-	size: "8KB"
+	size: "4KB"
 };
