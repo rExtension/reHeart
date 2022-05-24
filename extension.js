@@ -23,7 +23,7 @@ game.import("extension", (lib, _game, _ui, _get, _ai, _status) => {
 		month: "05",
 		date: 24,
 		nextPreview: 4,
-		times: "002",
+		times: "004",
 	};
 
     let extension = {

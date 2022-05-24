@@ -49,7 +49,7 @@ module.exports = () => {
     Array.prototype.isEmpty = Array.prototype.is_empty;
 
     Array.prototype.dup = function () {
-        return /* this.map(item => item) */ this.slice(0);
+        return this.slice(0);
     };
 
     Array.prototype.decrease = function (acc, fun) {
@@ -61,6 +61,13 @@ module.exports = () => {
     Array.prototype.count = function (fun) {
         return this.filter(fun).length;
     };
+
+    Array.prototype.fetch = function (fun) {
+        for (let item of this) {
+            if (fun(item)) return item;
+        }
+        return null;
+    }
 
     Array.prototype.zip = function (...arr) {
         return Array.zip(this, ...arr);
