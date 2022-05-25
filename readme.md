@@ -2,6 +2,8 @@
 
 rExtension Runtime from Rintim
 
+> Version: Build 2
+
 ---
 
 This Library add some methods to add javascript's portable edit.

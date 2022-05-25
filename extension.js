@@ -18,12 +18,11 @@ game.import("extension", (lib, _game, _ui, _get, _ai, _status) => {
 		intro: "rExtension Runtime from Rintim",
 		version: "0.1.0",
 		branch: "Development",
-		build: 1,
+		build: 2,
 		year: 2022,
 		month: "05",
 		date: 25,
-		nextPreview: 2,
-		times: "001",
+		times: "002",
 	};
 
     let extension = {
@@ -31,7 +30,7 @@ game.import("extension", (lib, _game, _ui, _get, _ai, _status) => {
 		// Make the extension not editable in the game
 		// 让扩展不能在游戏内被编辑
         editable: false,
-        content: (config, pack) => {
+        content: (_config, _pack) => {
             // Initialize
             if (lib.storage["reHeart"]) return;
             lib.storage["reHeart"] = true;
