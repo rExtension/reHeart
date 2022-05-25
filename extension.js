@@ -18,10 +18,10 @@ game.import("extension", (lib, _game, _ui, _get, _ai, _status) => {
 		intro: "rExtension Runtime from Rintim",
 		version: "0.1.0",
 		branch: "Master",
-		build: 1,
+		build: 2,
 		year: 2022,
 		month: "05",
-		date: 24,
+		date: 25,
 		times: "002",
 	};
 
@@ -30,7 +30,7 @@ game.import("extension", (lib, _game, _ui, _get, _ai, _status) => {
 		// Make the extension not editable in the game
 		// 让扩展不能在游戏内被编辑
         editable: false,
-        content: (config, pack) => {
+        content: (_config, _pack) => {
             // Initialize
             if (lib.storage["reHeart"]) return;
             lib.storage["reHeart"] = true;
@@ -64,7 +64,7 @@ game.import("extension", (lib, _game, _ui, _get, _ai, _status) => {
                     "= = = = = = = = = = = = = = = = ="
                 ];
                 if (extInfo.branch !== "Development") {
-                    intro[2] = `<span style=\"color:#1688F2\">Version: ${["Release", "Preview"].includes(extInfo.branch) ? (extInfo.branch === "Preview" ? `${extInfo.version}pre` : `${extInfo}`) : `Build ${extInfo.build} ${extInfo.nextPreview !== undefined ? `Form ${extInfo.nextPreview}` : ""}`}</span>`;
+                    intro[2] = `<span style=\"color:#1688F2\">Version: ${["Release", "Preview"].includes(extInfo.branch) ? (extInfo.branch === "Preview" ? `${extInfo.version}pre` : `${extInfo}`) : `Build ${extInfo.build} ${extInfo.nextPreview !== undefined ? `Form ${extInfo.nextPreview}` : ""}`}</span></br>`;
                     intro[3] = `${intro[3]}</br>`;
                 }
                 lib.extensionMenu[`extension_${name}`].intro.name = intro.join("</br>");
