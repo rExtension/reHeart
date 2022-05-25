@@ -2,7 +2,7 @@
 
 rExtension Runtime from Rintim
 
-> Version: Build 2 (0.1.0)
+> Version: v0.1.0
 
 ---
 

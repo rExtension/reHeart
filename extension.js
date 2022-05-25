@@ -17,7 +17,7 @@ game.import("extension", (lib, _game, _ui, _get, _ai, _status) => {
     let extInfo = {
 		intro: "rExtension Runtime from Rintim",
 		version: "0.1.0",
-		branch: "Master",
+		branch: "Release",
 		build: 2,
 		year: 2022,
 		month: "05",
