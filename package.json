@@ -1,0 +1,23 @@
+{
+  "name": "re-heart",
+  "version": "0.2.0",
+  "description": "rExtension Runtime from Rintim",
+  "main": "extension.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "zip -r 'reHeart.zip' extension.js package.js ./source LICENSE readme.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/rExtension/reHeart.git"
+  },
+  "keywords": [
+    "noname"
+  ],
+  "author": "Rintim",
+  "license": "BSD-2-Caluse",
+  "bugs": {
+    "url": "https://gitlab.com/rExtension/reHeart/issues"
+  },
+  "homepage": "https://gitlab.com/rExtension/reHeart#readme"
+}
