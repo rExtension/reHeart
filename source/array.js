@@ -87,6 +87,13 @@ module.exports = () => ({
 			return this.slice(0);
 		},
 
+		// Returns the count of elements in the enumerable for which fun returns a truthy value.
+		// ## Examples
+		// 	> [1, 2, 3, 4, 5].count(item => item > 3) # => 2
+		count: function (...args) {
+			return this.filter(...args).length;
+		},
+
 		// Another Reduce with Elixir's style
 		// ## Examples
 		//  > [1, 2, 3].decrease(4, (item, result) => result + item) # => 10
