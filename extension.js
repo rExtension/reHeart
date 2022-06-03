@@ -24,31 +24,31 @@ game.import("extension", (lib, _game, _ui, _get, _ai, _status) => {
             if (lib.storage["reHeart"]) return;
 
             const Name = "reHeart";
-            const Module = require(`./extension/${Name}/module.js`)(`./extension/${Name}`);
+            const Module = require(`./extension/${Name}/module.js`)();
             const ExtInfo = Module.main();
-
 
             lib.reHeart = ExtInfo;
 
             for (let i in ExtInfo.functions) {
                 const Class = ExtInfo.functions[i];
+                const NewClass = require(`./extension/${Name}/source/${i}.js`)();
 
-                for (let j in Class) {
-                    if (!i._super) i._super = {};
+                for (let j in NewClass) {
+                    if (!Class._super) Class._super = {};
                     if (j === "prototype") {
-                        if (!i.prototype._super) i.prototype._super = {};
-                        for (let k in ExtInfo.functions[i][j]) {
-                            if (i.prototype[j]) i.prototype._super[j] = i.prototype[j];
-                            i.prototype[k] = ExtInfo.functions[i][j][k];
+                        if (!Class.prototype._super) Class.prototype._super = {};
+                        for (let k in NewClass[j]) {
+                            if (Class.prototype[j]) Class.prototype._super[j] = Class.prototype[j];
+                            Class.prototype[k] = NewClass[j][k];
                         }
                         continue;
                     }
                     else if (j === "Symbol.iterator") {
-                        i.prototype[Symbol.iterator] = ExtInfo.functions[i][j];
+                        Class.prototype[Symbol.iterator] = NewClass[j];
                         continue;
                     }
-                    if (i[j]) i._super[j] = i[j];
-                    i[j] = ExtInfo.functions[i][j];
+                    if (Class[j]) Class._super[j] = Class[j];
+                    Class[j] = NewClass[j];
                 }
             }
 
