@@ -8,24 +8,24 @@
 
 "use strict"
 
-module.exports = () => {
-    Object.new = function () {
+module.exports = () => ({
+    new: function () {
         return new Object(...arguments);
-    };
+    },
 
-    Object.entries = function (object) {
+    entries: function (object) {
         let result = new Array();
         for (let key in object) {
             let value = object[key];
             result.push([key, value]);
         }
         return result;
-    };
+    },
 
-    Object.prototype[Symbol.iterator] = function* () {
+    "Symbol.iterator": function* () {
         for (let key in this) {
             let value = this[key];
             yield [key, value];
         }
-    };
-};
+    }
+});

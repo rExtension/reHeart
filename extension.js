@@ -14,45 +14,52 @@ lib.config.extension_RitySelf_enable
 */
 
 game.import("extension", (lib, _game, _ui, _get, _ai, _status) => {
-    let extInfo = {
-		intro: "rExtension Runtime from Rintim",
-		version: "0.2.0",
-		branch: "Development",
-		build: 2,
-		year: 2022,
-		month: "06",
-		date: "01",
-		times: "001",
-	};
-
     let extension = {
         name: "reHeart", // library-reHeart
-		// Make the extension not editable in the game
-		// 让扩展不能在游戏内被编辑
+        // Make the extension not editable in the game
+        // 让扩展不能在游戏内被编辑
         editable: false,
         content: (_config, _pack) => {
             // Initialize
             if (lib.storage["reHeart"]) return;
-            lib.storage["reHeart"] = true;
-            const name = "reHeart";
-            // Add Key Group
-            lib.arenaReady.push(() => {
-                if (!lib.group.contains("key")) lib.group.add("key");
-            });
-            // Create Methods
-            {
-                const sources = ["array", "object", "number"];
 
-                sources.forEach(src => require(`./extension/${name}/source/${src}.js`)());
+            const Name = "reHeart";
+            const Module = require(`./extension/${Name}/module.js`)(`./extension/${Name}`);
+            const ExtInfo = Module.main();
+
+
+            lib.reHeart = ExtInfo;
+
+            for (let i in ExtInfo.functions) {
+                const Class = ExtInfo.functions[i];
+
+                for (let j in Class) {
+                    if (!i._super) i._super = {};
+                    if (j === "prototype") {
+                        if (!i.prototype._super) i.prototype._super = {};
+                        for (let k in ExtInfo.functions[i][j]) {
+                            if (i.prototype[j]) i.prototype._super[j] = i.prototype[j];
+                            i.prototype[k] = ExtInfo.functions[i][j][k];
+                        }
+                        continue;
+                    }
+                    else if (j === "Symbol.iterator") {
+                        i.prototype[Symbol.iterator] = ExtInfo.functions[i][j];
+                        continue;
+                    }
+                    if (i[j]) i._super[j] = i[j];
+                    i[j] = ExtInfo.functions[i][j];
+                }
             }
+
             // AfterMath
             lib.arenaReady.push(() => {
-                delete lib.extensionMenu[`extension_${name}`]["author"];
-                const aDelete = lib.extensionMenu[`extension_${name}`]["delete"];
-                const aEnable = lib.extensionMenu[`extension_${name}`]["enable"];
-                delete lib.extensionMenu[`extension_${name}`]["delete"];
-                delete lib.extensionMenu[`extension_${name}`]["enable"];
-                lib.extensionMenu[`extension_${name}`]["br"] = {
+                delete lib.extensionMenu[`extension_${Name}`]["author"];
+                const aDelete = lib.extensionMenu[`extension_${Name}`]["delete"];
+                const aEnable = lib.extensionMenu[`extension_${Name}`]["enable"];
+                delete lib.extensionMenu[`extension_${Name}`]["delete"];
+                delete lib.extensionMenu[`extension_${Name}`]["enable"];
+                lib.extensionMenu[`extension_${Name}`]["br"] = {
                     "name": "</br></br></br>",
                     "clear": true,
                     "nopointer": true
@@ -60,27 +67,29 @@ game.import("extension", (lib, _game, _ui, _get, _ai, _status) => {
                 let intro = [
                     "= = = = = = = = = = = = = = = = =</br>",
                     "<span style=\"color:#1688F2\">rExtension Runtime from Rintim</span>",
-                    `<span style=\"color:#FF3333\">Development Branch </br>From ${extInfo.year}.${extInfo.month}.${extInfo.date}.${extInfo.times}</span></br>`,
+                    `<span style=\"color:#FF3333\">Development Branch </br>From ${ExtInfo.year}.${ExtInfo.month}.${ExtInfo.date}.${ExtInfo.times}</span></br>`,
                     "= = = = = = = = = = = = = = = = ="
                 ];
-                if (extInfo.branch !== "Development") {
-                    intro[2] = `<span style=\"color:#1688F2\">Version: ${["Release", "Preview"].includes(extInfo.branch) ? (extInfo.branch === "Preview" ? `${extInfo.version}pre` : `${extInfo}`) : `Build ${extInfo.build} ${extInfo.nextPreview !== undefined ? `Form ${extInfo.nextPreview}` : ""}`}</span></br>`;
+                if (ExtInfo.branch !== "Development") {
+                    intro[2] = `<span style=\"color:#1688F2\">Version: ${["Release", "Preview"].includes(ExtInfo.branch) ? (ExtInfo.branch === "Preview" ? `${ExtInfo.version}pre` : `${ExtInfo}`) : `Build ${ExtInfo.build} ${ExtInfo.nextPreview !== undefined ? `Form ${ExtInfo.nextPreview}` : ""}`}</span></br>`;
                     intro[3] = `${intro[3]}</br>`;
                 }
-                lib.extensionMenu[`extension_${name}`].intro.name = intro.join("</br>");
+                lib.extensionMenu[`extension_${Name}`].intro.name = intro.join("</br>");
                 // lib.extensionMenu[`extension_${name}`].intro.onclick();
-                lib.extensionMenu[`extension_${name}`]["enable"] = aEnable;
-                lib.extensionMenu[`extension_${name}`]["delete"] = aDelete;
+                lib.extensionMenu[`extension_${Name}`]["enable"] = aEnable;
+                lib.extensionMenu[`extension_${Name}`]["delete"] = aDelete;
             });
+
+            lib.storage["reHeart"] = true;
         },
         config: {},
         help: {},
         package: {
-            intro: extInfo.intro,
+            intro: "rExtension Runtime from Rintim",
             author: "Rintim",
             diskURL: "",
             forumURL: "",
-            version: "0.1.0",
+            version: "0.2.0",
         },
         files: {
             "character": [],
