@@ -31,7 +31,7 @@ game.import("extension", (lib, _game, _ui, _get, _ai, _status) => {
 
             for (let i in ExtInfo.functions) {
                 const Class = ExtInfo.functions[i];
-                const NewClass = require(`./extension/${Name}/source/${i}.js`)();
+                const NewClass = require(`${path}/source/${i}.js`)();
 
                 for (let j in NewClass) {
                     if (!Class._super) Class._super = {};

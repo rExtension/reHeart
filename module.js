@@ -11,6 +11,7 @@ module.exports = () => ({
         // Create Methods
         let result = {
             name: "reHeart",
+            bool: true,
             intro: "rExtension Runtime from Rintim",
             version: "0.2.0",
             branch: "Development",
@@ -18,10 +19,11 @@ module.exports = () => ({
             year: 2022,
             month: "06",
             date: "04",
-            times: "001",
+            times: "002",
         };
 
-        {
+        if (lib.storage["reHeart"]) result.bool = false;
+        else {
             const Sources = ["array", "object", "number"];
             const Class = [Array, Object, Number];
             result["functions"] = {};
