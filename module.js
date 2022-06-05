@@ -14,7 +14,7 @@ module.exports = () => ({
             bool: true,
             intro: "rExtension Runtime from Rintim",
             version: "0.2.0",
-            branch: "Development",
+            branch: "Master",
             build: 2,
             year: 2022,
             month: "06",
